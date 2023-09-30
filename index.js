@@ -3,6 +3,10 @@ import fs from "fs";
 import path from "path";
 
 const downloadImageOrVideo = async (url, directory) => {
+  if(!url) {
+    console.error("No URL provided");
+    return;
+  }
   try {
     const response = await axios({
       url,
@@ -32,6 +36,6 @@ const downloadImageOrVideo = async (url, directory) => {
 };
 
 downloadImageOrVideo(
-  "https://example.com/image.jpg",
-  "downloads/images/folder_name"
+  process.argv[2],
+  process.argv[3] || "downloads/"
 );
